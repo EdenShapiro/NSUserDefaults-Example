@@ -12,8 +12,22 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+//    registerDefaults() 
+    func launchedForFirstTime(){
+        if(NSUserDefaults.standardUserDefaults().boolForKey("HasLaunchedBefore")){
+            print("App has launched before")
+        }
+        else {
+            print("This is the first launch ever!")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "HasLaunchedBefore")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "midnightThemeOn")
 
-
+            
+        }
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -43,4 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+
 
