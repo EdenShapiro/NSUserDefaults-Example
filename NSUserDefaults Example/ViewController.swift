@@ -24,12 +24,10 @@ class ViewController: UIViewController {
             if boolValue as! Bool {
                 switchToMidnight()
             }
+        } else {
+            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "midnightThemeOn")
+            print("App is launching for the very first time!")
         }
-//
-//        } else {
-//            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "midnightThemeOn")
-//            print("App is launching for the very first time!")
-//        }
     }
 
     
@@ -88,6 +86,7 @@ class ViewController: UIViewController {
 
 
 //print("there is a value for midnightThemeOn, and it's \(boolValue)")
+
 //print("initial bool is true")
 // else {
 //    print("initial bool is false")
