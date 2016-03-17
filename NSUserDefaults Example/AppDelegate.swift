@@ -13,22 +13,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-//    func launchedForFirstTime(){
-//        if(NSUserDefaults.standardUserDefaults().boolForKey("HasLaunchedBefore")){
-//            print("App has launched before")
-//        }
-//        else {
-//            print("This is the first launch ever!")
-//            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "HasLaunchedBefore")
-//            NSUserDefaults.standardUserDefaults().synchronize()
-//            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "midnightThemeOn")
-//
-//            
-//        }
-//    }
+    func checkIfFirstLaunch(){
+        if(NSUserDefaults.standardUserDefaults().boolForKey("hasLaunchedBefore")){
+            print("App has launched before")
+            
+        }
+        else {
+            print("This is the first launch ever!")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLaunchedBefore")
+            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "midnightThemeOn")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            
+        }
+    }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        checkIfFirstLaunch()
         return true
     }
 

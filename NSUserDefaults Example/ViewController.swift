@@ -19,35 +19,32 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let boolValue = NSUserDefaults.standardUserDefaults().valueForKey("midnightThemeOn"){
-            if boolValue as! Bool {
-                switchToMidnight()
-            }
+        let weWantMidnight = NSUserDefaults.standardUserDefaults().valueForKey("midnightThemeOn")
+        print("there is a value for midnightThemeOn, and it's \(weWantMidnight)")
+
+        if weWantMidnight as! Bool == true {
+            switchToMidnight()
+            print("initial bool is true")
         } else {
-            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "midnightThemeOn")
-            print("App is launching for the very first time!")
+            print("initial bool is false")
         }
     }
 
     
     @IBAction func switchFlipped(sender: AnyObject) {
-        var midnightOn: Bool
         if themeSwitch.on {
             switchToMidnight()
-            midnightOn = true
+            NSUserDefaults.standardUserDefaults().setValue(true, forKey: "midnightThemeOn")
+
         } else {
             switchToDaytime()
-            midnightOn = false
+            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "midnightThemeOn")
+
         }
-        NSUserDefaults.standardUserDefaults().setValue(midnightOn, forKey: "midnightThemeOn")
-       
     }
     
 
-    
-    
-    
+
     
     
     
@@ -70,7 +67,6 @@ class ViewController: UIViewController {
         mainView.backgroundColor = UIColor(red: 28/255, green: 19/255, blue: 76/255, alpha: 1.0)
         midnightThemeLabel.textColor = UIColor.whiteColor()
         titleLabel.textColor = UIColor.whiteColor()
-        //themeSwitch.tintColor = UIColor.whiteColor()
         themeSwitch.on = true
     }
     
@@ -79,16 +75,8 @@ class ViewController: UIViewController {
         mainView.backgroundColor = UIColor(red: 220/255, green: 240/255, blue: 246/255, alpha: 1.0)
         midnightThemeLabel.textColor = UIColor.blackColor()
         titleLabel.textColor = UIColor.blackColor()
-        //themeSwitch.tintColor = UIColor.yellowColor()
         themeSwitch.on = false
     }
 }
 
 
-//print("there is a value for midnightThemeOn, and it's \(boolValue)")
-
-//print("initial bool is true")
-// else {
-//    print("initial bool is false")
-//    
-//}
