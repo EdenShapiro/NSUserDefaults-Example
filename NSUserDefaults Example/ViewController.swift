@@ -19,29 +19,41 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let weWantMidnight = NSUserDefaults.standardUserDefaults().valueForKey("midnightThemeOn")
-        print("there is a value for midnightThemeOn, and it's \(weWantMidnight)")
-
-        if weWantMidnight as! Bool == true {
+        let weWantMidnight = UserDefaults.standard.value(forKey: "midnightThemeOn")
+            if weWantMidnight as! Bool {
+                switchToMidnight()
+            }
+    }
+    
+    
+    @IBAction func switchFlipped(_ sender: AnyObject) {
+        if themeSwitch.isOn {
             switchToMidnight()
-            print("initial bool is true")
+            UserDefaults.standard.setValue(true, forKey: "midnightThemeOn")
+            
         } else {
-            print("initial bool is false")
+            switchToDaytime()
+            UserDefaults.standard.setValue(false, forKey: "midnightThemeOn")
+            
         }
     }
 
     
-    @IBAction func switchFlipped(sender: AnyObject) {
-        if themeSwitch.on {
-            switchToMidnight()
-            NSUserDefaults.standardUserDefaults().setValue(true, forKey: "midnightThemeOn")
-
-        } else {
-            switchToDaytime()
-            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "midnightThemeOn")
-
-        }
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 
@@ -65,17 +77,17 @@ class ViewController: UIViewController {
     func switchToMidnight(){
         imageView.image = UIImage(named:"moon")
         mainView.backgroundColor = UIColor(red: 28/255, green: 19/255, blue: 76/255, alpha: 1.0)
-        midnightThemeLabel.textColor = UIColor.whiteColor()
-        titleLabel.textColor = UIColor.whiteColor()
-        themeSwitch.on = true
+        midnightThemeLabel.textColor = UIColor.white
+        titleLabel.textColor = UIColor.white
+        themeSwitch.isOn = true
     }
     
     func switchToDaytime(){
         imageView.image = UIImage(named:"sun")
         mainView.backgroundColor = UIColor(red: 220/255, green: 240/255, blue: 246/255, alpha: 1.0)
-        midnightThemeLabel.textColor = UIColor.blackColor()
-        titleLabel.textColor = UIColor.blackColor()
-        themeSwitch.on = false
+        midnightThemeLabel.textColor = UIColor.black
+        titleLabel.textColor = UIColor.black
+        themeSwitch.isOn = false
     }
 }
 
